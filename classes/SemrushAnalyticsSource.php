@@ -8,7 +8,7 @@ class SemrushAnalyticsSource implements GetData
 
     public function get_data()
     {
-        $this->data = ['semrushAnalytics' => 2000];
+        $this->data = 123;
         return json_encode($this->data);
     }
 }
