@@ -1,5 +1,5 @@
 <?php
-require_once 'interfaces/interface.php';
+require_once 'IGetAnalytics.php';
 
 class SemrushAnalyticsSource implements GetData
 {
@@ -9,6 +9,7 @@ class SemrushAnalyticsSource implements GetData
 
     public function get_data()
     {
+        // Made a mistake to simulate not getting data
         $this->data = 123;
         return json_encode($this->data);
     }

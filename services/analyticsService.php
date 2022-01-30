@@ -1,7 +1,7 @@
 <?php
-require_once 'classes/GoogleAnalyticsSource.php';
-require_once 'classes/DbAnalyticsSource.php';
-require_once 'classes/SemrushAnalyticsSource.php';
+require_once 'sources/GoogleAnalyticsSource.php';
+require_once 'sources/DbAnalyticsSource.php';
+require_once 'sources/SemrushAnalyticsSource.php';
 require_once 'functions/isJson.php';
 
 // Make instance for each class of source and add it in instances Array
@@ -42,4 +42,5 @@ if (!$errorArr) {
 }
 
 $dataObject->data = $dataArr;
+
 $myJSON = json_encode($dataObject);

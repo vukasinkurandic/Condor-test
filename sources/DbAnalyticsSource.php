@@ -1,15 +1,15 @@
 <?php
-require_once 'interfaces/interface.php';
+require_once 'IGetAnalytics.php';
 
-class GoogleAnalyticsSource implements GetData
+class DbAnalyticsSource implements GetData
 {
     // Here goes Pseudologic, in real case logic depends of type of source
     private $data;
-    public $sourceName = 'Google Analytics';
+    public $sourceName = 'Database Analytics';
 
     public function get_data()
     {
-        $this->data = ['GoogleAnalitics' => 1500];
+        $this->data = ['dbAnalitics' => 2000];
         return json_encode($this->data);
     }
 }
