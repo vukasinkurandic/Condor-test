@@ -3,8 +3,9 @@ require_once 'interfaces/interface.php';
 
 class DbAnalyticsSource implements GetData
 {
-    // Here goes Pseudologic, in real case logic depends of type of sorce
+    // Here goes Pseudologic, in real case logic depends of type of source
     private $data;
+    public $sourceName = 'Database Analytics';
 
     public function get_data()
     {

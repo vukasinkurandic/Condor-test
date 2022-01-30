@@ -7,36 +7,39 @@ require_once 'functions/isJson.php';
 // Make instance for each class of source and add it in instances Array
 
 $instancesArr = array(
-    "GoogleAnalyticsSourceIstance" => new GoogleAnalyticsSource,
-    "DbAnalyticsSourceIstance" => new DbAnalyticsSource,
-    "SemrushAnalyticsSourceIstance" => new SemrushAnalyticsSource);
+    "GoogleAnalyticsSourceInstance" => new GoogleAnalyticsSource,
+    "DbAnalyticsSourceInstance" => new DbAnalyticsSource,
+    "SemrushAnalyticsSourceInstance" => new SemrushAnalyticsSource);
 
 $dataArr = array();
 $errorArr = array();
 
 foreach ($instancesArr as $instance) {
     $data = $instance->get_data();
+    $sourceName = $instance->sourceName;
     if (isJson($data)) {
         array_push($dataArr, $data);
     } else {
-        array_push($errorArr, "Can't get data");
+        $errorMessage = "Can't get data from " . $sourceName;
+        array_push($errorArr, $errorMessage);
 
     }
 
 }
 
-$myObj = new stdClass();
+$dataObject = new stdClass();
 
 if (!$errorArr) {
-    $myObj->error = false;
-    $myObj->message = "";
+    $dataObject->error = false;
+    $dataObject->message = "";
 
 } else {
-    $myObj->error = true;
-    $myObj->message = "Can't get data";
+    $dataObject->error = true;
+    foreach ($errorArr as $message) {
+        $dataObject->message[] = $message;
+    }
 
 }
 
-$myObj->data = $dataArr;
-
-$myJSON = json_encode($myObj);
+$dataObject->data = $dataArr;
+$myJSON = json_encode($dataObject);
